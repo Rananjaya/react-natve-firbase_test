@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React,{ useState, useEffect } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -14,6 +14,7 @@ import {
   View,
   Text,
   StatusBar,
+  
 } from 'react-native';
 
 import {
@@ -23,8 +24,28 @@ import {
   DebugInstructions,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import firestore from '@react-native-firebase/firestore';
+
+
+
 
 const App: () => React$Node = () => {
+
+
+  useEffect(() => {
+    test_firestore()
+  }, []);
+ 
+
+  
+
+async function test_firestore(){
+  const userDocument = await firestore().collection('users').doc('rG9m2yFMifuxl7dzNzyo').get()
+  console.log("firestore data, >>>>>",userDocument)
+}
+
+
+
   return (
     <>
       <StatusBar barStyle="dark-content" />
